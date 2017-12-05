@@ -27,7 +27,7 @@ namespace MVC_Garage_2._0.Migrations
                 Colour = "Red",
                 Model = "Sedan",
                 NoOfWheels = 4,
-
+                CheckIn = DateTime.Now
 
 
             },
@@ -39,7 +39,8 @@ namespace MVC_Garage_2._0.Migrations
                 Brand = "Trailor",
                 Colour = "White",
                 Model = "GTOD",
-                NoOfWheels = 5
+                NoOfWheels = 5,
+                CheckIn = DateTime.Now
             }
             );
         }

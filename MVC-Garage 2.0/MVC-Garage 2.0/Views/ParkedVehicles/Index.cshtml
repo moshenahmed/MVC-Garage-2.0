@@ -1,13 +1,13 @@
-﻿@model IEnumerable<MVC_Garage_2._0.Models.ParkedVehicle>
+﻿@model IEnumerable<MVC_Garage_2._0.Models.ViewModels.ParkedVehicleIndexVM>
 
 @{
-    ViewBag.Title = "ParkedVehicles";
+    ViewBag.Title = "Parked vehicles";
 }
 
-<h2>Parked Vehicles</h2>
+<h2>List of parked vehicles</h2>
 
 <p>
-    @Html.ActionLink("Park A Vehicle", "Create")
+    @Html.ActionLink("Park new vehicle", "Park")
 </p>
 <table class="table">
     <tr>
@@ -21,13 +21,7 @@
             @Html.DisplayNameFor(model => model.Colour)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoOfWheels)
+            @Html.DisplayNameFor(model => model.CheckIn)
         </th>
         <th></th>
     </tr>
@@ -44,18 +38,12 @@
             @Html.DisplayFor(modelItem => item.Colour)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Brand)
+            @Html.DisplayFor(modelItem => item.CheckIn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoOfWheels)
-        </td>
-        <td>
-            @Html.ActionLink("Edit Parked Vehicle", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Update", "Update", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Check Out A Vehicle", "Delete", new { id=item.Id })
+            @Html.ActionLink("Check out the vehicle", "UnPark", new { id=item.Id })
         </td>
     </tr>
 }
