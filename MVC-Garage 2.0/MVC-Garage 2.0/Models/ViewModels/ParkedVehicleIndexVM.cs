@@ -4,11 +4,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
-namespace MVC_Garage_2._0.Models
+namespace MVC_Garage_2._0.Models.ViewModels
 {
-    public class ParkedVehicle
+    public class ParkedVehicleIndexVM
     {
-
         public int Id { get; set; }
         [DisplayName("Vehicle Type")]
         public string Type { get; set; }
@@ -16,13 +15,21 @@ namespace MVC_Garage_2._0.Models
         public string RegNumber { get; set; }
         [DisplayName("Vehicle Color")]
         public string Colour { get; set; }
-        [DisplayName("Vehicle Brand")]
-        public string Brand { get; set; }
-        [DisplayName("Vehicle Model")]
-        public string Model { get; set; }
-        [DisplayName("Number Of Wheels")]
-        public int NoOfWheels { get; set; }
         [DisplayName("Parking time")]
         public DateTime? CheckIn { get; set; }
+
+        public ParkedVehicleIndexVM()
+        {
+
+        }
+
+        public ParkedVehicleIndexVM(ParkedVehicle v)
+        {
+            Id = v.Id;
+            Type = v.Type;
+            RegNumber = v.RegNumber;
+            Colour = v.Colour;
+            CheckIn = v.CheckIn;
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC_Garage_2._0.DataAccessLayer;
 using MVC_Garage_2._0.Models;
+using MVC_Garage_2._0.Models.ViewModels;
 
 namespace MVC_Garage_2._0.Controllers
 {
@@ -18,7 +19,12 @@ namespace MVC_Garage_2._0.Controllers
         // GET: ParkedVehicles
         public ActionResult Index()
         {
-            return View(db.ParkedVehicles.ToList());
+            List<ParkedVehicleIndexVM> model = new List<ParkedVehicleIndexVM>();
+            foreach (var v in db.ParkedVehicles)
+            {
+                model.Add(new ParkedVehicleIndexVM(v));
+            }
+            return View(model);
         }
 
         // GET: ParkedVehicles/Details/5
@@ -36,8 +42,8 @@ namespace MVC_Garage_2._0.Controllers
             return View(parkedVehicle);
         }
 
-        // GET: ParkedVehicles/Create
-        public ActionResult Create()
+        // GET: ParkedVehicles/Park
+        public ActionResult Park()
         {
             return View();
         }
@@ -47,10 +53,11 @@ namespace MVC_Garage_2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,RegNumber,Colour,Brand,Model,NoOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Park([Bind(Include = "Id,Type,RegNumber,Colour,Brand,Model,NoOfWheels")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
+                parkedVehicle.CheckIn = DateTime.Now;
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -60,7 +67,7 @@ namespace MVC_Garage_2._0.Controllers
         }
 
         // GET: ParkedVehicles/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Update(int? id)
         {
             if (id == null)
             {
@@ -79,7 +86,7 @@ namespace MVC_Garage_2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,RegNumber,Colour,Brand,Model,NoOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Update([Bind(Include = "Id,Type,RegNumber,Colour,Brand,Model,NoOfWheels,CheckIn")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +98,7 @@ namespace MVC_Garage_2._0.Controllers
         }
 
         // GET: ParkedVehicles/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult UnPark(int? id)
         {
             if (id == null)
             {
@@ -106,15 +113,17 @@ namespace MVC_Garage_2._0.Controllers
         }
 
         // POST: ParkedVehicles/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("UnPark")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult UnparkConfirmed(int id)
         {
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        
 
         protected override void Dispose(bool disposing)
         {
