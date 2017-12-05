@@ -13,7 +13,7 @@ namespace MVC_Garage_2._0.Models.ViewModels
 
         public int Id { get; set; }
         [DisplayName("Vehicle Type")]
-        public string Type { get; set; }
+        public Type Type { get; set; }
         [DisplayName("Registration Number")]
         public string RegNumber { get; set; }
         [DisplayName("Parking time")]

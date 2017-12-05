@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
-using System.ComponentModel;
 
 namespace MVC_Garage_2._0.Models
 {
@@ -13,7 +12,7 @@ namespace MVC_Garage_2._0.Models
 
         public int Id { get; set; }
         [DisplayName("Vehicle Type")]
-        public string Type { get; set; }
+        public Type Type { get; set; }
         [DisplayName("Registration Number")]
         public string RegNumber { get; set; }
         [DisplayName("Vehicle Color")]

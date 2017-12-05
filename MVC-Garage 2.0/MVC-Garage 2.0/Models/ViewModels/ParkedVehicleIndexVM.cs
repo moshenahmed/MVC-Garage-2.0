@@ -10,7 +10,7 @@ namespace MVC_Garage_2._0.Models.ViewModels
     {
         public int Id { get; set; }
         [DisplayName("Vehicle Type")]
-        public string Type { get; set; }
+        public Type Type { get; set; }
         [DisplayName("Registration Number")]
         public string RegNumber { get; set; }
         [DisplayName("Vehicle Color")]
@@ -26,7 +26,7 @@ namespace MVC_Garage_2._0.Models.ViewModels
         public ParkedVehicleIndexVM(ParkedVehicle v)
         {
             Id = v.Id;
-            Type = v.Type;
+            Type =v.Type;
             RegNumber = v.RegNumber;
             Colour = v.Colour;
             CheckIn = v.CheckIn;
