@@ -9,7 +9,7 @@ namespace MVC_Garage_2._0.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(MVC_Garage_2._0.DataAccessLayer.RegisterContext context)
@@ -22,7 +22,7 @@ namespace MVC_Garage_2._0.Migrations
             context.ParkedVehicles.AddOrUpdate(x => x.RegNumber, new Models.ParkedVehicle()
             {
                 RegNumber = "UAX456",
-                Type = "Bus",
+                Type = Models.Type.Bus,
                 Brand = "SLK",
                 Colour = "Red",
                 Model = "Sedan",
@@ -35,7 +35,7 @@ namespace MVC_Garage_2._0.Migrations
             new Models.ParkedVehicle()
             {
                 RegNumber = "SFG597",
-                Type = "Boat",
+                Type = Models.Type.Aeroplane,
                 Brand = "Trailor",
                 Colour = "White",
                 Model = "GTOD",

@@ -1,10 +1,10 @@
 ﻿@model MVC_Garage_2._0.Models.ParkedVehicle
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Park Vehicle";
 }
 
-<h2>Create</h2>
+<h2>Park Vehicle</h2>
 
 
 @using (Html.BeginForm()) 
@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EnumDropDownListFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -72,7 +72,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Garage", "Index")
 </div>
 
 @section Scripts {
