@@ -15,5 +15,6 @@ namespace MVC_Garage_2._0.Models
         public string Brand { get; set; }
         public string Model { get; set; }
         public int NoOfWheels { get; set; }
+        
     }
 }
