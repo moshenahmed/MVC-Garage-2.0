@@ -27,6 +27,8 @@ namespace MVC_Garage_2._0.Controllers
             return View(model);
         }
 
+      
+
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)
         {
