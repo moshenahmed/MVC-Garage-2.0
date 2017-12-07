@@ -1,0 +1,94 @@
+﻿@model MVC_Garage_2._0.Models.ParkedVehicle
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Unpark the vehicle</h2>
+
+
+<form action="@Url.Action("Index")" method="get">
+    <div class="form-group">
+        <label for="name">Registration number:</label>
+        <input type="text" class="form-control" name="regNum" data-garage-autocomplete="@Url.Action("AutoComplete")"/>
+    </div>
+    <button style="height: 34px ; margin: 5px;" type="submit" class="btn btn-default">Go!</button>
+</form>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Colour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Colour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoOfWheels)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoOfWheels)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckIn)
+        </dd>
+
+    </dl>
+</div>
+
+
+
+@if (Model != null)
+{
+    using (Html.BeginForm("Receipt", "ParkedVehicles", new { Id = Model.Id }, FormMethod.Get))
+    {
+        @Html.AntiForgeryToken();
+        <div class="row">
+            <button style="height: 34px ; margin: 5px;" type="submit" class="btn btn-default">Unpark the vehicle</button>
+        </div>
+    }  
+
+}
+
+@Html.ActionLink("Back to List", "Index", "ParkedVehicles", null, null)
