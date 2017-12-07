@@ -6,6 +6,12 @@
     <h1>Welcome to </br> Our Awesome Parking site</h1>
     <a href="~/ParkedVehicles" class="btn btn-info">See all parked vehicles &raquo;</a>
     <a href="~/ParkedVehicles/Park" class="btn btn-default">Park yourself &raquo;</a>
+    
+   <form method="get" action="@Url.Action("Search")"
+         data-otf-ajax="true" data-otf-target="#ParkedVehicles">
+       <input type="search" name="Searchtext" />
+       <input type="submit" value="search by RegNumber" />
+   </form>
 </div>
 
 <div class="row">
