@@ -105,8 +105,8 @@ namespace MVC_Garage_2._0.Controllers
             return View(parkedVehicle);
         }
 
-        // GET: ParkedVehicles/Delete/5
-        public ActionResult UnPark(int? id)
+        // GET: ParkedVehicles/Unpark/5
+        public ActionResult Receipt(int? id)
         {
             if (id == null)
             {
@@ -117,11 +117,14 @@ namespace MVC_Garage_2._0.Controllers
             {
                 return HttpNotFound();
             }
-            return View(parkedVehicle);
+            ReceiptVM receipt = new ReceiptVM(parkedVehicle);
+            receipt.CheckOut = DateTime.Now;
+            //receipt.CalPrice();
+            return View("Receipt",receipt);
         }
 
-        // POST: ParkedVehicles/Delete/5
-        [HttpPost, ActionName("UnPark")]
+        // POST: ParkedVehicles/UnPark/5
+        [HttpPost, ActionName("Receipt")]
         [ValidateAntiForgeryToken]
         public ActionResult UnparkConfirmed(int id)
         {
@@ -131,7 +134,12 @@ namespace MVC_Garage_2._0.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        public JsonResult IsVehicleExists(string RegNumber)
+        {
+            //check if any of the UserName matches the UserName specified in the Parameter using the ANY extension method.  
+            return Json(!db.ParkedVehicles.Any(x => x.RegNumber == RegNumber), JsonRequestBehavior.AllowGet);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

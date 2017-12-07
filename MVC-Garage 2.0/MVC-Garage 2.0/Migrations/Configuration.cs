@@ -41,7 +41,63 @@ namespace MVC_Garage_2._0.Migrations
                 Model = "GTOD",
                 NoOfWheels = 5,
                 CheckIn = DateTime.Now
+            },
+
+            new Models.ParkedVehicle()
+            {
+                RegNumber = "ADF457",
+                Type = Models.Type.Boat,
+                Brand = "VikingLine",
+                Colour = "Black",
+                Model = "VK09",
+                NoOfWheels = 10,
+                CheckIn = DateTime.Now
+            },
+
+            new Models.ParkedVehicle()
+            {
+                RegNumber = "AGH123",
+                Type = Models.Type.Bicycle,
+                Brand = "AGH12",
+                Colour = "Blue",
+                Model = "HN09",
+                NoOfWheels = 2,
+                CheckIn = DateTime.Now
+            },
+
+            new Models.ParkedVehicle()
+            {
+                RegNumber = "AKL598",
+                Type = Models.Type.Bus,
+                Brand = "SL124",
+                Colour = "Blue",
+                Model = "KTOD",
+                NoOfWheels = 8,
+                CheckIn = DateTime.Now
+            },
+
+            new Models.ParkedVehicle()
+            {
+                RegNumber = "SFJ509",
+                Type = Models.Type.Motorbicycle,
+                Brand = "Honda",
+                Colour = "Black",
+                Model = "Davison",
+                NoOfWheels = 3,
+                CheckIn = DateTime.Now
+            },
+
+            new Models.ParkedVehicle()
+            {
+                RegNumber = "SFO917",
+                Type = Models.Type.Aeroplane,
+                Brand = "Trailor",
+                Colour = "White",
+                Model = "GTOD",
+                NoOfWheels = 5,
+                CheckIn = DateTime.Now
             }
+
             );
         }
     }

@@ -1,0 +1,79 @@
+﻿@model MVC_Garage_2._0.Models.ViewModels.ReceiptVM
+
+@{
+    ViewBag.Title = "Receipt";
+}
+
+<h2>Receipt</h2>
+
+<div class="receipt">
+    <h4>Total price</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PricePerHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PricePerHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sum)
+        </dt>
+
+        <dd class = "totalmoney">
+            @Html.DisplayFor(model => model.Sum)
+        </dd>
+
+    </dl>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Unpark" class="btn btn-default" />  |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
