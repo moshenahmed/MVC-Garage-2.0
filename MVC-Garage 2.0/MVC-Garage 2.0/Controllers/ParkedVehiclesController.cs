@@ -27,13 +27,7 @@ namespace MVC_Garage_2._0.Controllers
             return View(model);
         }
 
-        public PartialViewResult Search(string text)
-        {
-           
-            var model = db.ParkedVehicles.Where(f =>
-            f.RegNumber.Contains(text)).ToList();
-            return PartialView(model);
-        }
+       
 
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)

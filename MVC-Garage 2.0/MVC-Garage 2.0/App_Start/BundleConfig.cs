@@ -12,7 +12,9 @@ namespace MVC_Garage_2._0
                         "~/Scripts/jquery-{version}.js",
                          "~/Scripts/jquery.validate*",
                          "~/Scripts/jquery-ui.js*",
-                         "~/Scripts/garage.js"
+                         "~/Scripts/garage.js",
+                         "~/Scripts/otf.js"
+
                         ));
 
 

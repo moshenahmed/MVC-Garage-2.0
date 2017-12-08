@@ -8,7 +8,7 @@
         };
         $.ajax(options).done(function (data) {
             var $target = $($form.attr("data-otf-target"));
-            $target.html(data);
+            $target.replaceWith(data);
         });
         return false
     };
