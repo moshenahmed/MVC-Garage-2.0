@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MVC_Garage_2._0.Models.ViewModels.ParkByDay>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Parked vehicles By Day</h2>
+
+@foreach (var item in Model)
+{
+    <div class="group-header">
+        <div class="col-xs-6">
+            Date
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Date))
+        </div>
+        <div class="totalPark col-xs-6">
+            Total parked vehicles:
+            @Html.DisplayFor(modelItem => item.Count)
+        </div>      
+        
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                Type
+            </th>
+            <th>
+                Registration Number
+            </th>
+            <th>
+                Color
+            </th>
+            <th>
+                Brand
+            </th>
+            <th>
+                Model
+            </th>
+            <th>
+                Number Of Wheel
+            </th>
+            <th>
+                parking Time
+            </th>
+
+        </tr>
+
+        @foreach (var v in item.VehicleList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => v.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => v.RegNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => v.Colour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => v.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => v.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => v.NoOfWheels)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => v.CheckIn)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+
+}

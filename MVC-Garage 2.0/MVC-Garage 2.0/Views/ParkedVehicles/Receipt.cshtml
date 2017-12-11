@@ -72,8 +72,8 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Unpark" class="btn btn-default" />  |
+    <div class="form-actions no-color printHidden">
+        <input type="submit" value="Unpark" class="btn btn-default printHidden" id="printReceipt" />  |
         @Html.ActionLink("Back to List", "Index")
     </div>
 }

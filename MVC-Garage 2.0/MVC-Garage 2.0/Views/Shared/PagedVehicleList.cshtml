@@ -1,0 +1,58 @@
+﻿@model MVC_Garage_2._0.Models.ViewModels.PagedVehicle
+<div id="vehiclelist">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Register Number
+                </th>
+                <th>
+                    Color
+                </th>
+                <th>
+                    Parkng Time
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Data)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Colour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CheckIn)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Update", "Update", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Check out the vehicle", "Receipt", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    <div >
+                        @for (int i = 1; i <= Model.NumberOfPages; i++)
+                        {
+                            <a class="page-number">@i</a>
+                        }
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>   
