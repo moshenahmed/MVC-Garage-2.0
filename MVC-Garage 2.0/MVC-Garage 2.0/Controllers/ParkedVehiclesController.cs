@@ -32,7 +32,7 @@ namespace MVC_Garage_2._0.Controllers
             if (Request.IsAjaxRequest())
             {
                 return PartialView("PagedVehicleList",model);
-            }
+        }
             else return View(model);
         }
 
@@ -151,11 +151,11 @@ namespace MVC_Garage_2._0.Controllers
         {
             var validateRegNum = db.ParkedVehicles.FirstOrDefault(x => x.RegNumber == RegNumber && x.Id != Id);
             if (validateRegNum != null)
-            {
+        {
                 return Json(false, JsonRequestBehavior.AllowGet);
-            }
+        }
             else
-            {
+        {
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
         }
