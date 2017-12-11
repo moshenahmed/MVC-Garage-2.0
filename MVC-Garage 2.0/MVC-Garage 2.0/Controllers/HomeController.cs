@@ -61,7 +61,7 @@ namespace MVC_Garage_2._0.Controllers
 
 
             switch (sortOrder)
-            {
+        {
                 case "RegNo":
                     model = model.OrderByDescending(s => s.RegNumber).ToList();
                     break;
@@ -80,21 +80,6 @@ namespace MVC_Garage_2._0.Controllers
         }
 
 
-
-        //public ActionResult Search(string Searchtext)
-        //{
-
-            
-
-
-        //}
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
 
         public ActionResult Contact()
         {

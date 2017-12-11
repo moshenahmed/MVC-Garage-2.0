@@ -4,7 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Garage 2.0</title>
-    @Styles.Render("~/Content/css")
+    <link href="~/Content/Print.css" rel="stylesheet" type="text/css" media="print"/>
+    <link href="@Styles.Url("~/Content/css")" rel="stylesheet" type="text/css" media="all" />
+    @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -29,6 +31,7 @@
                             <li>@Html.ActionLink("Unpark Vehicle", "Index", "Vehicle")</li>                            
                         </ul>
                     </li>
+                    <li>@Html.ActionLink("Statistic", "Index", "Statistic")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </div>
