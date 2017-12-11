@@ -36,8 +36,9 @@ namespace MVC_Garage_2._0.Models
 
         [DisplayName("Parking time")]
         public DateTime CheckIn { get; set; }
-
         
+
+
     }
     public enum Type
     {
@@ -49,16 +50,7 @@ namespace MVC_Garage_2._0.Models
         Motorbicycle,
         Car
     }
-    public enum properties
-    {
-        RegistrationNumber,
-        Color,
-        Brand,
-        Model,
-
-    }
-
-    
+  
 
 
 }
