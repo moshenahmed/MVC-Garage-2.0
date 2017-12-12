@@ -135,16 +135,17 @@ namespace MVC_Garage_2._0.Controllers
             return View("Receipt",receipt);
         }
 
-        // POST: ParkedVehicles/UnPark/5
-        //[HttpPost, ActionName("Receipt")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult UnparkConfirmed(int id)
-        //{
-        //    ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
-        //    db.ParkedVehicles.Remove(parkedVehicle);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        //POST: ParkedVehicles/UnPark/5
+        [HttpPost, ActionName("Receipt")]
+        [ValidateAntiForgeryToken]
+        public ActionResult UnparkConfirmed(int id)
+        {
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
+            db.ParkedVehicles.Remove(parkedVehicle);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
         //client site to check if the registration number is already exist
         public JsonResult IsVehicleExist(string RegNumber, int? Id)

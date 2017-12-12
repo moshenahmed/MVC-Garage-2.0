@@ -27,7 +27,7 @@ namespace MVC_Garage_2._0.Migrations
                 Colour = "Red",
                 Model = "Sedan",
                 NoOfWheels = 4,
-                CheckIn = DateTime.Now
+                CheckIn = DateTime.Now.AddDays(-1)
 
 
             },
@@ -40,7 +40,7 @@ namespace MVC_Garage_2._0.Migrations
                 Colour = "White",
                 Model = "GTOD",
                 NoOfWheels = 5,
-                CheckIn = DateTime.Now
+                CheckIn = DateTime.Now.AddDays(-2)
             },
 
             new Models.ParkedVehicle()
@@ -73,7 +73,7 @@ namespace MVC_Garage_2._0.Migrations
                 Colour = "Blue",
                 Model = "KTOD",
                 NoOfWheels = 8,
-                CheckIn = DateTime.Now
+                CheckIn = DateTime.Now.AddDays(-1)
             },
 
             new Models.ParkedVehicle()
@@ -84,7 +84,7 @@ namespace MVC_Garage_2._0.Migrations
                 Colour = "Black",
                 Model = "Davison",
                 NoOfWheels = 3,
-                CheckIn = DateTime.Now
+                CheckIn = DateTime.Now.AddDays(-2)
             },
 
             new Models.ParkedVehicle()
