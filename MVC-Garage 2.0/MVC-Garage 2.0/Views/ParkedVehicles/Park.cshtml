@@ -5,7 +5,10 @@
 }
 
 <h2>Park new vehicle</h2>
-
+<p>
+    @Html.ActionLink("RegNo", "Index", new { sortOrder = ViewBag.RegnoSort })
+    <input type="submit" value="RegNo" />
+</p>
 
 @using (Html.BeginForm()) 
 {

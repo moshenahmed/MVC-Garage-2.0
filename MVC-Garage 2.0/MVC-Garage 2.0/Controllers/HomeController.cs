@@ -64,6 +64,7 @@ namespace MVC_Garage_2._0.Controllers
             {
                 case "RegNo":
                     model = model.OrderByDescending(s => s.RegNumber).ToList();
+                  
                     break;
                 case "Color":
                     model = model.OrderByDescending(s => s.Colour).ToList();
