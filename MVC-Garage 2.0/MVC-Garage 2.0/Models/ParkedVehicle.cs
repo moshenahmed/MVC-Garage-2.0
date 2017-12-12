@@ -38,6 +38,7 @@ namespace MVC_Garage_2._0.Models
         [DisplayName("Number Of Wheels")]
         public int NoOfWheels { get; set; }
 
+        [Column(TypeName = "datetime2")]
         [DisplayName("Parking time")]
         public DateTime CheckIn { get; set; }
 
