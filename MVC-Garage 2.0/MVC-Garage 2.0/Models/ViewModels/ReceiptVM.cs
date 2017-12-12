@@ -9,7 +9,6 @@ namespace MVC_Garage_2._0.Models.ViewModels
 {
     public class ReceiptVM
     {
-        private int pricePerHour = 100;
 
         public int Id { get; set; }
         [DisplayName("Vehicle Type")]

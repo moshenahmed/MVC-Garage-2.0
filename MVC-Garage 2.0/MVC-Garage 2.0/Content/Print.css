@@ -1,0 +1,33 @@
+﻿@media print {
+    body {
+        -webkit-print-color-adjust: exact; /* This settings is used to print background color, but only works in Chrome browser*/
+        print-color-adjust: exact;
+    }
+
+    .receipt {
+        background-color: lightskyblue !important;
+        color: white;
+        padding: 20px 40px 30px 40px;
+        font-size: 20px !important;
+        text-align: center;
+    }
+
+    h4 {
+        font-size: 25px !important;
+    }
+
+    .printHidden {
+        display: none;
+
+    }
+
+    .totalmoney{
+    color: red;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: yellow !important;
+    border: 2px solid;
+    }
+
+    
+}

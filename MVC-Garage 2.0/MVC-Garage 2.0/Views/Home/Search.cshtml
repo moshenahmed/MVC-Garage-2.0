@@ -7,20 +7,22 @@
                 @Html.DisplayNameFor(model => model.Type)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RegNumber)
-                
+                @*@Html.DisplayNameFor(model => model.RegNumber)*@
+                @Html.ActionLink("Registration Number", "Index", new { sortOrder = ViewBag.RegNoSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Colour)
+                @Html.ActionLink("Color", "Index", new { sortOrder = ViewBag.ColorSortParm })
+                @*@Html.DisplayNameFor(model => model.Colour)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Brand)
+                @Html.ActionLink("Brand", "Index", new { sortOrder = ViewBag.BrandSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Model)
+                @Html.ActionLink("Model", "Index", new { sortOrder = ViewBag.ModelSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoOfWheels)
+                @Html.ActionLink("Number of wheels", "Index", new { sortOrder = ViewBag.WheelsSortParm})
+                @*@Html.DisplayNameFor(model => model.NoOfWheels)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CheckIn)

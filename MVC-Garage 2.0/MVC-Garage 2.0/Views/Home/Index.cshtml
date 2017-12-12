@@ -7,36 +7,56 @@
     <h1>Welcome to </br> Our Awesome Parking site</h1>
     <a href="~/ParkedVehicles" class="btn btn-info">See all parked vehicles &raquo;</a>
     <a href="~/ParkedVehicles/Park" class="btn btn-default">Park yourself &raquo;</a>
-   
+
 
     <form method="get" action="@Url.Action("Index", "Home")"
           data-otf-ajax="true" data-otf-target="#Search">
-     
-        <input type="search" name="Searchtext" />
-        <input type="submit" value="search for Vehicle" />
-        <p>Select a category to search</p>
-       <div>
-           RegNumber:   @Html.RadioButton("Category", "RegNo")
-           Color: @Html.RadioButton("Category", "Color")
-           NoOfWheels: @Html.RadioButton("Category", "NoOfWheels")
-           Model: @Html.RadioButton("Category", "Model")
-           Type: @Html.RadioButton("Category", "Type")
-           Brand: @Html.RadioButton("Category", "Brand")
-       </div>
+
+        <div class="Row searchpanel">
+            <input type="search" name="Searchtext" class="searchtext" />
+            @*@Html.TextBox("Searchtext", ViewBag.CurrentSearch as string)*@            
+            <input type="submit" value="search for Vehicle" class="searc" />
+
+        </div>
+        <div class="Row category">
+            <div class="row">
+                <p>Select a category to search</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    RegNumber:   @Html.RadioButton("Category", "RegNo",true)
+                </div>
+                <div class="col-xs-2">
+                    Color: @Html.RadioButton("Category", "Color")
+                </div>
+                <div class="col-xs-2">
+                    WheelsNo: @Html.RadioButton("Category", "NoOfWheels")
+                </div>
+                <div class="col-xs-2">
+                    Model: @Html.RadioButton("Category", "Model")
+                </div>
+                <div class="col-xs-2">
+                    Type: @Html.RadioButton("Category", "Type")
+                </div>
+                <div class="col-xs-2">
+                    Brand: @Html.RadioButton("Category", "Brand")
+                </div>
+            </div>
+
+        </div>
+
         
 
     </form>
 
-    
-
-    
-  
 </div>
 
-    
-        @Html.Partial("Search",Model)
+    @Html.Partial("Search", Model)
 
-    
+
+
+
+
 
 
 
