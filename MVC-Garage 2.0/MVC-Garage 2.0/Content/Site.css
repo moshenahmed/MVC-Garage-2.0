@@ -60,3 +60,19 @@ textarea {
     text-align:right;
 }
 
+.category{
+    margin-top: 20px;
+}
+
+.category div{
+    margin:0;
+    padding:0;
+}
+
+input.searchtext{
+    width: 1000px;
+}
+
+.searchpanel{
+    margin-top: 20px;
+}
