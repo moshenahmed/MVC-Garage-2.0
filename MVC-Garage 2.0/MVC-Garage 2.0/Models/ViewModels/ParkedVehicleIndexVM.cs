@@ -26,7 +26,6 @@ namespace MVC_Garage_2._0.Models.ViewModels
         public ParkedVehicleIndexVM(ParkedVehicle v)
         {
             Id = v.Id;
-            Type =v.Type;
             RegNumber = v.RegNumber;
             Colour = v.Colour;
             CheckIn = v.CheckIn;

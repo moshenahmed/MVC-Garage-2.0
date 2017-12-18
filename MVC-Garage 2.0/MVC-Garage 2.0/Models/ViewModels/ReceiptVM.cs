@@ -59,15 +59,9 @@ namespace MVC_Garage_2._0.Models.ViewModels
         public ReceiptVM(ParkedVehicle v)
         {
             Id = v.Id;
-            Type = v.Type;
             RegNumber = v.RegNumber;
             CheckIn = v.CheckIn;
          }
 
-        //internal void CalPrice()
-        //{
-        //    TimeSpan totalTime = CheckOut - CheckIn;
-        //    Sum = totalTime.TotalHours * price;
-        //}
     }
 }

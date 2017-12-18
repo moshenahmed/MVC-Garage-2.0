@@ -14,10 +14,8 @@ namespace MVC_Garage_2._0.Models
     {     
 
         public int Id { get; set; }
-        [Required]
-        [DisplayName("Vehicle Type")]
-        public Type Type { get; set; }
-
+        public int TypeId { get; set; }
+        public int MemberId { get; set; }
         [Required]
         [StringLength(50)]
         [CustomRemoteValidation("IsVehicleExist", "ParkedVehicles", AdditionalFields = "Id", ErrorMessage = "Vehicle registration number already exists")]
@@ -41,7 +39,12 @@ namespace MVC_Garage_2._0.Models
         [DisplayName("Parking time")]
         public DateTime CheckIn { get; set; }
 
-        
+        [ForeignKey("TypeId")]
+        public virtual VehicleType VehicleType { get; set; }
+
+        [ForeignKey("MemberId")]
+        public virtual Member Member { get; set; }
+
 
         //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         //{
@@ -63,16 +66,7 @@ namespace MVC_Garage_2._0.Models
         //    }
         //}
     }
-    public enum Type
-    {
-        
-        Bus,
-        Aeroplane,
-        Boat,
-        Bicycle,
-        Motorbicycle,
-        Car
-    }
+    
 
     
 
