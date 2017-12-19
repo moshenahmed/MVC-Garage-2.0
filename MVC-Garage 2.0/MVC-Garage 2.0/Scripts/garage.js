@@ -44,5 +44,6 @@
     $("input[data-garage-autocomplete]").each(createAutocomplete);
     $(document).on("click", ".page-number", paging);
     $("#printReceipt").click(printPage);
+    $.validator.methods["date"] = function (value, element) { return true; }
     
 })
