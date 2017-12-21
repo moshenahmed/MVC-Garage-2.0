@@ -16,15 +16,20 @@ namespace MVC_Garage_2._0.Controllers
         // GET: Vehicle
         public ActionResult Index(string regNum = "")
         {
-            
+            ParkedVehicleDetail vehicleDetail = new ParkedVehicleDetail();
             ParkedVehicle vehicle = new ParkedVehicle();
+            
             if (regNum != null)
             {
                 vehicle = db.ParkedVehicles.FirstOrDefault(v => v.RegNumber == regNum);
             }
-           
 
-            return View(vehicle);
+            if (vehicle != null)
+            {
+                vehicleDetail = new ParkedVehicleDetail(vehicle);
+            }            
+                
+            return View(vehicleDetail);
         }
 
 

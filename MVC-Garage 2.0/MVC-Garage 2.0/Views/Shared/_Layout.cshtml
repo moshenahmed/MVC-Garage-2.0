@@ -18,17 +18,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Garage 2.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Garage 2.5", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("List Vehicles", "Index", "ParkedVehicles")</li>
+                    <li>@Html.ActionLink("List Members", "Index", "Members")</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Park vehicle", "Park", "ParkedVehicles")</li>
-                            <li>@Html.ActionLink("Unpark Vehicle", "Index", "Vehicle")</li>                            
+                            <li>@Html.ActionLink("Unpark Vehicle", "Index", "Vehicle")</li>
+                            <li>@Html.ActionLink("Register member", "Create", "Members")</li>
+                            <li>@Html.ActionLink("Add Vehicle Type", "Index", "VehicleTypes")</li>                                
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Statistic", "Index", "Statistic")</li>

@@ -1,4 +1,5 @@
 ﻿using MVC_Garage_2._0.DataAccessLayer;
+using MVC_Garage_2._0.Models;
 using MVC_Garage_2._0.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,27 @@ namespace MVC_Garage_2._0.Controllers
         // GET: Statistic
         public ActionResult Index()
         {
-            var model = db.ParkedVehicles.GroupBy(v => DbFunctions.TruncateTime(v.CheckIn))
+            IQueryable<ParkedVehicleDetail> vehicles = from v in db.ParkedVehicles
+                                                       select new ParkedVehicleDetail
+                                                       {
+                                                           Id = v.Id,
+                                                           RegNumber = v.RegNumber,
+                                                           Colour = v.Colour,
+                                                           Model = v.Model,
+                                                           Brand = v.Brand,
+                                                           NoOfWheels = v.NoOfWheels,
+                                                           CheckIn = v.CheckIn,
+                                                           Type = v.VehicleType.Name,
+                                                           Owner = v.Member.FirstName + " " + v.Member.LastName,
+                                                       };
+
+            var model = vehicles.GroupBy(v => DbFunctions.TruncateTime(v.CheckIn))
                 .Select(g => new ParkByDay
                 {
                     Date = (DateTime)g.Key,
                     Count = g.Count(),
-                    VehicleList = g
-                }).ToList();
+                    VehicleList = g.ToList()
+                });
             return View(model);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using MVC_Garage_2._0.DataAccessLayer;
+using MVC_Garage_2._0.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace MVC_Garage_2._0.Models
         [CustomRemoteValidation("IsVehicleExist", "ParkedVehicles", AdditionalFields = "Id", ErrorMessage = "Vehicle registration number already exists")]
         [Index("Ix_RegNum", IsUnique = true)]
         [DisplayName("Registration Number")]
+        
         public string RegNumber { get; set; }
 
         [DisplayName("Vehicle Color")]
@@ -37,6 +39,7 @@ namespace MVC_Garage_2._0.Models
         public int NoOfWheels { get; set; }
 
         [DisplayName("Parking time")]
+        [Column(TypeName = "datetime2")]
         public DateTime CheckIn { get; set; }
 
         [ForeignKey("Type")]
@@ -65,6 +68,22 @@ namespace MVC_Garage_2._0.Models
         //        yield return ValidationResult.Success;
         //    }
         //}
+
+        public ParkedVehicle()
+        {
+
+        }
+
+        public ParkedVehicle(ParkedVehicleDetail vdetail)
+        {
+            Id = vdetail.Id;
+            RegNumber = vdetail.RegNumber;
+            Colour = vdetail.Colour;
+            Model = vdetail.Model;
+            Brand = vdetail.Brand;
+            NoOfWheels = vdetail.NoOfWheels;
+            CheckIn = vdetail.CheckIn;
+        }
     }
     
 

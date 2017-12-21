@@ -1,5 +1,6 @@
 ﻿using MVC_Garage_2._0.DataAccessLayer;
 using MVC_Garage_2._0.Models;
+using MVC_Garage_2._0.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,44 +38,43 @@ namespace MVC_Garage_2._0.Controllers
 
 
 
-            
-            var model = new List<ParkedVehicle>();
+
+            var model = new List<ParkedVehicleDetail>();
+            foreach (var v in db.ParkedVehicles)
+            {
+                var vehicleDetail = new ParkedVehicleDetail(v);
+                model.Add(vehicleDetail);
+            }
+
             if (!String.IsNullOrEmpty(Searchtext))
             {
                 if (Category == "RegNo")
                 {
-                    model = db.ParkedVehicles.Where(s => s.RegNumber.Contains(Searchtext)).ToList();
+                    model = model.Where(s => s.RegNumber.Contains(Searchtext)).ToList();
                 }
 
                 else if (Category == "Color")
                 {
-                    model = db.ParkedVehicles.Where(s => s.Colour.Contains(Searchtext)).ToList();
+                    model = model.Where(s => s.Colour.Contains(Searchtext)).ToList();
                 }
                 else if (Category == "NoOfWheels")
                 {
                     var NoOfWheels = int.Parse(Searchtext);
-                    model = db.ParkedVehicles.Where(s => s.NoOfWheels == NoOfWheels).ToList();
+                    model = model.Where(s => s.NoOfWheels == NoOfWheels).ToList();
                 }
                 else if (Category == "Model")
                 {
-                    model = db.ParkedVehicles.Where(s => s.Model.Contains(Searchtext)).ToList();
+                    model = model.Where(s => s.Model.Contains(Searchtext)).ToList();
                 }
 
                 else if (Category == "Type")
                 {
-
-                    Models.VehicleType typeValue = (Models.VehicleType)Enum.Parse(typeof(Models.VehicleType), Searchtext, true);
-                    if (Enum.IsDefined(typeof(Models.VehicleType), typeValue))
-                    {
-                        model = db.ParkedVehicles.Where(s => s.VehicleType == typeValue).ToList();
-                    }
+                    model = model.Where(s => s.Type == Searchtext).ToList();
                 }
                 else if (Category == "Brand")
                 {
-                    model = db.ParkedVehicles.Where(s => s.Brand.Equals(Searchtext)).ToList();
+                    model = model.Where(s => s.Brand.Equals(Searchtext)).ToList();
                 }
-
-            
 
             }
 

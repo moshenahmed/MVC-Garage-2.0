@@ -18,12 +18,15 @@ namespace MVC_Garage_2._0.Controllers
         public const int PageSize = 5;
 
         // GET: ParkedVehicles
-        public ActionResult Index(int page=1)
+        public ActionResult Index(int page = 1)
         {
-            var listVehicles = new List<ParkedVehicleIndexVM>();
+            var listVehicles = new List<ParkedVehicleOverview>();
             foreach (var v in db.ParkedVehicles.OrderBy(p => p.RegNumber).Skip(PageSize * (page - 1)).Take(PageSize).ToList())
             {
-                listVehicles.Add(new ParkedVehicleIndexVM(v));
+                ParkedVehicleOverview ov = new ParkedVehicleOverview(v);
+                ov.Owner = v.Member.FirstName + " " + v.Member.LastName;
+                ov.Type = v.VehicleType.Name;
+                listVehicles.Add(ov);
             }
             var model = new PagedVehicle();
             model.Data = listVehicles;
@@ -31,8 +34,8 @@ namespace MVC_Garage_2._0.Controllers
             model.CurrentPage = page;
             if (Request.IsAjaxRequest())
             {
-                return PartialView("PagedVehicleList",model);
-        }
+                return PartialView("PagedVehicleList", model);
+            }
             else return View(model);
         }
 
@@ -49,24 +52,28 @@ namespace MVC_Garage_2._0.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
+
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
             }
-            return View(parkedVehicle);
+
+            var detail = new ParkedVehicleDetail(parkedVehicle);
+            return View(detail);
         }
 
         // GET: ParkedVehicles/Park
         //https://www.codeproject.com/Articles/1130342/Best-ways-of-implementing-Uniqueness-or-Unique-Key
         public ActionResult Park()
         {
+            ViewBag.Type = new SelectList(db.VehicleTypes, "Id", "Name");
             return View();
         }
 
         // POST: ParkedVehicles/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Park([Bind(Include = "Id,Type,RegNumber,Colour,Brand,Model,NoOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Park([Bind(Include = "Id,Type,Owner,RegNumber,Colour,Brand,Model,NoOfWheels")] ParkedVehicleDetail vehicleDetail)
         {
             ////server site check for unique RegNum
             //bool IsVehicleExist = db.ParkedVehicles.Any(x => x.RegNumber == parkedVehicle.RegNumber && x.Id != parkedVehicle.Id);
@@ -74,6 +81,18 @@ namespace MVC_Garage_2._0.Controllers
             //{
             //    ModelState.AddModelError("RegNumber", "Vehicle registration number already exists");
             //}
+            ParkedVehicle parkedVehicle = new ParkedVehicle(vehicleDetail);
+            ViewBag.Type = new SelectList(db.VehicleTypes, "Id", "Name", vehicleDetail.Type);
+            parkedVehicle.TypeId = Int32.Parse(vehicleDetail.Type);
+
+            var members = db.Members.ToList();
+            var member = members.FirstOrDefault(x => x.FullName == vehicleDetail.Owner);
+            if (member == null)
+            {
+                ModelState.AddModelError("Owner", "Vehicle Owner is not exist");
+            }
+            else
+                parkedVehicle.MemberId = member.Id;
 
             if (ModelState.IsValid)
             {
@@ -83,28 +102,31 @@ namespace MVC_Garage_2._0.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(parkedVehicle);
+            return View(vehicleDetail);
         }
 
         // GET: ParkedVehicles/Edit/5
         public ActionResult Update(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
+            ParkedVehicleDetail vehicleDetail = new ParkedVehicleDetail(parkedVehicle);
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
             }
-            return View(parkedVehicle);
+            ViewBag.Type = new SelectList(db.VehicleTypes, "Id", "Name", parkedVehicle.TypeId);
+            return View(vehicleDetail);
         }
 
         // POST: ParkedVehicles/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update([Bind(Include = "Id,Type,RegNumber,Colour,Brand,Model,NoOfWheels,CheckIn")] ParkedVehicle parkedVehicle)
+        public ActionResult Update([Bind(Include = "Id,Type,Owner,RegNumber,Colour,Brand,Model,NoOfWheels,CheckIn")] ParkedVehicleDetail vehicleDetail)
         {
             //server site check for unique RegNum
             //bool IsVehicleExist = db.ParkedVehicles.Any(x => x.RegNumber == parkedVehicle.RegNumber && x.Id != parkedVehicle.Id);
@@ -112,6 +134,20 @@ namespace MVC_Garage_2._0.Controllers
             //{
             //    ModelState.AddModelError("RegNumber", "Vehicle registration number already exists");
             //}
+            ParkedVehicle parkedVehicle = new ParkedVehicle(vehicleDetail);
+            ViewBag.Type = new SelectList(db.VehicleTypes, "Id", "Name", vehicleDetail.Type);
+            parkedVehicle.TypeId = Int32.Parse(vehicleDetail.Type);
+
+
+            var members = db.Members.ToList();
+            var member = members.FirstOrDefault(x => x.FullName == vehicleDetail.Owner);
+            if (member == null)
+            {
+                ModelState.AddModelError("Owner", "Vehicle Owner is not exist");
+            }
+            else
+                parkedVehicle.MemberId = member.Id;
+
 
             if (ModelState.IsValid)
             {
@@ -119,7 +155,7 @@ namespace MVC_Garage_2._0.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(parkedVehicle);
+            return View(vehicleDetail);
         }
 
         // GET: ParkedVehicles/Unpark/5
@@ -136,7 +172,7 @@ namespace MVC_Garage_2._0.Controllers
             }
             ReceiptVM receipt = new ReceiptVM(parkedVehicle);
             receipt.CheckOut = DateTime.Now;
-            return View("Receipt",receipt);
+            return View("Receipt", receipt);
         }
 
         //POST: ParkedVehicles/UnPark/5
@@ -156,15 +192,24 @@ namespace MVC_Garage_2._0.Controllers
         {
             var validateRegNum = db.ParkedVehicles.FirstOrDefault(x => x.RegNumber == RegNumber && x.Id != Id);
             if (validateRegNum != null)
-        {
+            {
                 return Json(false, JsonRequestBehavior.AllowGet);
-        }
+            }
             else
-        {
+            {
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
         }
 
+        public ActionResult AutoComplete(string term)
+        {
+            var members = db.Members.ToList();
+            var model = members.Where(v => v.FirstName.StartsWith(term,StringComparison.CurrentCultureIgnoreCase) || v.LastName.StartsWith(term, StringComparison.CurrentCultureIgnoreCase))
+                .Take(10)
+                .Select(v => new { label = v.FullName + " ( " + v.Personnumber + ")" });
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
 
         protected override void Dispose(bool disposing)
         {

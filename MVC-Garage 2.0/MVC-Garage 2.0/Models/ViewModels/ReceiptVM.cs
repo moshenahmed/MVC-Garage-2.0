@@ -12,7 +12,9 @@ namespace MVC_Garage_2._0.Models.ViewModels
 
         public int Id { get; set; }
         [DisplayName("Vehicle Type")]
-        public Type Type { get; set; }
+        public string Type { get; set; }
+        [DisplayName("Vehicle Owner")]
+        public string Owner { get; set; }
         [DisplayName("Registration Number")]
         public string RegNumber { get; set; }
         [DisplayName("Parking time")]
@@ -59,8 +61,10 @@ namespace MVC_Garage_2._0.Models.ViewModels
         public ReceiptVM(ParkedVehicle v)
         {
             Id = v.Id;
+            this.Type = v.VehicleType.Name;
             RegNumber = v.RegNumber;
             CheckIn = v.CheckIn;
+            Owner = v.Member.FullName;
          }
 
     }

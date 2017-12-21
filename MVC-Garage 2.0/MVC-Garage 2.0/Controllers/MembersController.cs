@@ -65,7 +65,7 @@ namespace MVC_Garage_2._0.Controllers
             if (ModelState.IsValid)
             {
                 var query = db.Members.Where(s => s.Personnumber == member.Personnumber);
-                if (query == null) { 
+                if (query.Count() == 0) { 
                 
                 db.Members.Add(member);
                 db.SaveChanges();
@@ -106,9 +106,19 @@ namespace MVC_Garage_2._0.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(member).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var query = db.Members.Where(s => s.Personnumber == member.Personnumber);
+                if (query.Count()  == 0)
+                {
+                    db.Entry(member).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = "MemberExists";
+                    return View(ViewBag.Message);
+                }
+               
             }
             return View(member);
         }
@@ -134,9 +144,15 @@ namespace MVC_Garage_2._0.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Member member = db.Members.Find(id);
-            db.Members.Remove(member);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var vehicleCount = member.ParkedVehicles.Count();
+            if (vehicleCount == 0)
+            {
+                db.Members.Remove(member);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+                return Content("The member has parked vehicles. Can not delete");
         }
 
         protected override void Dispose(bool disposing)
