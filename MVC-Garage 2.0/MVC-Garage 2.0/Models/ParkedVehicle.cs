@@ -14,7 +14,7 @@ namespace MVC_Garage_2._0.Models
     {     
 
         public int Id { get; set; }
-        public int TypeId { get; set; }
+        public int Type { get; set; }
         public int MemberId { get; set; }
         [Required]
         [StringLength(50)]
@@ -39,7 +39,7 @@ namespace MVC_Garage_2._0.Models
         [DisplayName("Parking time")]
         public DateTime CheckIn { get; set; }
 
-        [ForeignKey("TypeId")]
+        [ForeignKey("Type")]
         public virtual VehicleType VehicleType { get; set; }
 
         [ForeignKey("MemberId")]

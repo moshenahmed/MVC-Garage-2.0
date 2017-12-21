@@ -36,6 +36,10 @@ namespace MVC_Garage_2._0.Controllers
             else return View(model);
         }
 
+        public ActionResult ListByOwner()
+        {
+            return View(db.ParkedVehicles.ToList());
+        }
 
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)

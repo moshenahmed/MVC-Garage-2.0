@@ -18,7 +18,20 @@ namespace MVC_Garage_2._0.Controllers
         // GET: Members
         public ActionResult Index()
         {
-            return View(db.Members.ToList());
+            var model = db.Members.ToList();
+            if (model == null)
+            {
+                ViewBag.Message = "MemberListEmpty";
+                return View(ViewBag.Message);
+            }
+            else { return View(model); }
+            
+        }
+
+        public ActionResult SearchMember(Member member)
+        {
+            var model = db.Members.Where(s => s.Personnumber == member.Personnumber).ToList();
+            return View(model);
         }
 
         // GET: Members/Details/5

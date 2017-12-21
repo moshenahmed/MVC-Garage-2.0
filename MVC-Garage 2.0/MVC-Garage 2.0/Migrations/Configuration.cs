@@ -14,57 +14,115 @@ namespace MVC_Garage_2._0.Migrations
 
         protected override void Seed(MVC_Garage_2._0.DataAccessLayer.RegisterContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            //This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            //You can use the DbSet<T>.AddOrUpdate() helper extension method
+            //to avoid creating duplicate seed data.
+          context.VehicleTypes.AddOrUpdate(x => x.Name,
+              new Models.VehicleType() { Name = "Bus" },
+              new Models.VehicleType() { Name = "Aeroplane" },
+              new Models.VehicleType() { Name = "Boat" },
+              new Models.VehicleType() { Name = "Bicycle" },
+              new Models.VehicleType() { Name = "Car" },
+              new Models.VehicleType() { Name = "MotorBike" }
+              );
+            context.SaveChanges();
 
-            //context.ParkedVehicles.AddOrUpdate(x => x.RegNumber, 
-            //    new Models.ParkedVehicle()
-            //{
-            //    RegNumber = "UAX456",
-            //    Type = Models.Type.Bus,
-            //    Brand = "SLK",
-            //    Colour = "Red",
-            //    Model = "Sedan",
-            //    NoOfWheels = 4,
-            //    CheckIn = DateTime.Now.AddDays(-1)
+            context.Members.AddOrUpdate(x => x.Personnumber,
+                new Models.Member() {
+                    Personnumber = "198565249575",
+                    FirstName ="Ahmed",
+                    LastName = " kakeeto",
+                    Address ="kabalagala 3 14521",
+                    TelephoneNumber ="0797854264",
+                    DateOfBirth =DateTime.Parse("1985/05/24") },
+                
+                new Models.Member()
+                 {
+                     Personnumber = "198665249575",
+                     FirstName = "nakato",
+                     LastName = " nabira",
+                     Address = "nkumba 3 5990",
+                     TelephoneNumber = "0754005225",
+                     DateOfBirth = DateTime.Parse("1985/08/09")
+                 },
+                  new Models.Member()
+                  {
+                      Personnumber = "199065249575",
+                      FirstName = "nakato",
+                      LastName = " nabira",
+                      Address = "nkumba 3 5990",
+                      TelephoneNumber = "0754005225",
+                      DateOfBirth = DateTime.Parse("1990/08/09")
+                  },
+                    new Models.Member()
+                    {
+                        Personnumber = "198665249575",
+                        FirstName = "babirye",
+                        LastName = " safiya",
+                        Address = "nkumba 3 5990",
+                        TelephoneNumber = "0772951318",
+                        DateOfBirth = DateTime.Parse("1985/08/09")
+                    }
+
+                );
 
 
-            //},
+            context.SaveChanges();
 
-            //new Models.ParkedVehicle()
-            //{
-            //    RegNumber = "SFG597",
-            //    Type = Models.Type.Aeroplane,
-            //    Brand = "Trailor",
-            //    Colour = "White",
-            //    Model = "GTOD",
-            //    NoOfWheels = 5,
-            //    CheckIn = DateTime.Now.AddDays(-2)
-            //},
 
-            //new Models.ParkedVehicle()
-            //{
-            //    RegNumber = "ADF457",
-            //    Type = Models.Type.Boat,
-            //    Brand = "VikingLine",
-            //    Colour = "Black",
-            //    Model = "VK09",
-            //    NoOfWheels = 10,
-            //    CheckIn = DateTime.Now
-            //},
 
-            //new Models.ParkedVehicle()
-            //{
-            //    RegNumber = "AGH123",
-            //    Type = Models.Type.Bicycle,
-            //    Brand = "AGH12",
-            //    Colour = "Blue",
-            //    Model = "HN09",
-            //    NoOfWheels = 2,
-            //    CheckIn = DateTime.Now
-            //},
+            context.ParkedVehicles.AddOrUpdate(x => x.RegNumber,
+                new Models.ParkedVehicle()
+                {
+                    RegNumber = "UAX456",
+                    Type = context.VehicleTypes.ToList()[2].Id,
+                    Brand = "SLK",
+                    Colour = "Red",
+                    Model = "Sedan",
+                    NoOfWheels = 4,
+                    CheckIn = DateTime.Now.AddDays(1),
+                    MemberId=context.Members.ToList()[1].Id
+                    
+
+
+                },
+
+            new Models.ParkedVehicle()
+            {
+                RegNumber = "SFG597",
+                Type = context.VehicleTypes.ToList()[1].Id,
+                Brand = "Trailor",
+                Colour = "White",
+                Model = "GTOD",
+                NoOfWheels = 5,
+                CheckIn = DateTime.Now.AddDays(2),
+                MemberId = context.Members.ToList()[2].Id
+            },
+
+            new Models.ParkedVehicle()
+            {
+                RegNumber = "ADF457",
+                Type = context.VehicleTypes.ToList()[1].Id,
+                Brand = "VikingLine",
+                Colour = "Black",
+                Model = "VK09",
+                NoOfWheels = 10,
+                CheckIn = DateTime.Now,
+                MemberId = context.Members.ToList()[1].Id
+            },
+
+            new Models.ParkedVehicle()
+            {
+                RegNumber = "AGH123",
+                Type = context.VehicleTypes.ToList()[3].Id,
+                Brand = "AGH12",
+                Colour = "Blue",
+                Model = "HN09",
+                NoOfWheels = 2,
+                CheckIn = DateTime.Now,
+                MemberId = context.Members.ToList()[0].Id
+            }
 
             //new Models.ParkedVehicle()
             //{
@@ -99,7 +157,8 @@ namespace MVC_Garage_2._0.Migrations
             //    CheckIn = DateTime.Now
             //}
 
-            //);
+            );
+            context.SaveChanges();
         }
     }
 }

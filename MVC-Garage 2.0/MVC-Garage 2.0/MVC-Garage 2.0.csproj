@@ -146,6 +146,18 @@
     <Compile Include="Migrations\201712191438177_test.Designer.cs">
       <DependentUpon>201712191438177_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712201344480_test2.cs" />
+    <Compile Include="Migrations\201712201344480_test2.Designer.cs">
+      <DependentUpon>201712201344480_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712201448549_init1.cs" />
+    <Compile Include="Migrations\201712201448549_init1.Designer.cs">
+      <DependentUpon>201712201448549_init1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712201522213_init2.cs" />
+    <Compile Include="Migrations\201712201522213_init2.Designer.cs">
+      <DependentUpon>201712201522213_init2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
@@ -226,6 +238,8 @@
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\MemberExists.cshtml" />
+    <Content Include="Views\Members\SearchMember.cshtml" />
+    <Content Include="Views\Members\MemberListEmpty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -243,6 +257,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712191438177_test.resx">
       <DependentUpon>201712191438177_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712201344480_test2.resx">
+      <DependentUpon>201712201344480_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712201448549_init1.resx">
+      <DependentUpon>201712201448549_init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712201522213_init2.resx">
+      <DependentUpon>201712201522213_init2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
