@@ -28,10 +28,17 @@ namespace MVC_Garage_2._0.Controllers
             
         }
 
-        public ActionResult SearchMember(Member member)
+        [HttpPost]
+        public ActionResult Index(string Searchtext)
         {
-            var model = db.Members.Where(s => s.Personnumber == member.Personnumber).ToList();
+            var model = db.Members.ToList();
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+
+                model = model.Where(s => s.Personnumber == Searchtext).ToList();
+            }
             return View(model);
+
         }
 
         // GET: Members/Details/5

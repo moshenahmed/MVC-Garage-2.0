@@ -6,6 +6,26 @@
 
 <h2>Members</h2>
 
+    
+
+   <form method="post" action="@Url.Action("Index", "Members")">
+
+        <div class="Row searchpanel">
+            <input type="search" name="Searchtext" class="searchtext" />
+            @*@Html.TextBox("Searchtext", ViewBag.CurrentSearch as string)*@
+            <input type="submit" value="search for Member" class="search" />
+
+        </div>
+        
+
+       
+
+
+
+    </form>
+
+
+
 <p>
     @Html.ActionLink("New Member", "Create")
 </p>

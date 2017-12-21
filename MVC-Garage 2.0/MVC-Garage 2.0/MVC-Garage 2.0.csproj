@@ -139,13 +139,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712181022055_init.cs" />
-    <Compile Include="Migrations\201712181022055_init.Designer.cs">
-      <DependentUpon>201712181022055_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712191438177_test.cs" />
-    <Compile Include="Migrations\201712191438177_test.Designer.cs">
-      <DependentUpon>201712191438177_test.cs</DependentUpon>
+    <Compile Include="Migrations\201712211059111_init.cs" />
+    <Compile Include="Migrations\201712211059111_init.Designer.cs">
+      <DependentUpon>201712211059111_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Member.cs" />
@@ -242,11 +238,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712181022055_init.resx">
-      <DependentUpon>201712181022055_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712191438177_test.resx">
-      <DependentUpon>201712191438177_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712211059111_init.resx">
+      <DependentUpon>201712211059111_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
