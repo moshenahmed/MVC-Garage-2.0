@@ -9,6 +9,6 @@ namespace MVC_Garage_2._0.Models.ViewModels
     {
         public DateTime Date { get; set; }
         public int Count { get; set; }
-        public IEnumerable<ParkedVehicle> VehicleList { get; set; }
+        public IEnumerable<ParkedVehicleDetail> VehicleList { get; set; }
     }
 }

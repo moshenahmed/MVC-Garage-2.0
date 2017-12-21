@@ -1,14 +1,10 @@
-﻿@model MVC_Garage_2._0.Models.ParkedVehicle
+﻿@model MVC_Garage_2._0.Models.ViewModels.ParkedVehicleDetail
 
 @{
     ViewBag.Title = "Park";
 }
 
 <h2>Park new vehicle</h2>
-<p>
-    @Html.ActionLink("RegNo", "Index", new { sortOrder = ViewBag.RegnoSort })
-    <input type="submit" value="RegNo" />
-</p>
 
 @using (Html.BeginForm()) 
 {
@@ -19,10 +15,21 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Vehicle Type", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("Type", null , new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ActionLink("Add new type","Index","VehicleTypes",null,null)
                 @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Owner, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" class="form-control" name="Owner" data-garage-autocomplete="@Url.Action("AutoComplete")" />
+                @*@Html.EditorFor(model => model.Owner, new { htmlAttributes = new { @class = "form-control" }})*@
+                @Html.ActionLink("Register", "Index", "Members", null, null)
+                @Html.ValidationMessageFor(model => model.Owner, "", new { @class = "text-danger" })
             </div>
         </div>
 
