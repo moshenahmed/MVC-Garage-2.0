@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MVC_Garage_2._0.Models.VehicleType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Create new vehicle type</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Please enter the name of vehicle type:</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Vehicle Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("TypeName", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<h4>Existing vehicle types: @Model.Count() </h4> 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @using (Html.BeginForm("Delete", "VehicleTypes",new { id = item.Id },FormMethod.Post,null))
+            {
+                @Html.AntiForgeryToken()
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    <input type="submit" value="Delete" class="btn btn-default"/>
+                    
+                </td>
+                
+            }
+            
+
+        </tr>
+    }
+
+</table>

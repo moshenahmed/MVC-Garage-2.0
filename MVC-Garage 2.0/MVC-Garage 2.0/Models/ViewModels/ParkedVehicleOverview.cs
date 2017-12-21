@@ -6,28 +6,27 @@ using System.Web;
 
 namespace MVC_Garage_2._0.Models.ViewModels
 {
-    public class ParkedVehicleIndexVM
+    public class ParkedVehicleOverview
     {
         public int Id { get; set; }
         [DisplayName("Vehicle Type")]
-        public Type Type { get; set; }
+        public string Type { get; set; }
         [DisplayName("Registration Number")]
         public string RegNumber { get; set; }
-        [DisplayName("Vehicle Color")]
-        public string Colour { get; set; }
+        [DisplayName("Vehicle Owner")]
+        public string Owner { get; set; }
         [DisplayName("Parking time")]
-        public DateTime? CheckIn { get; set; }
+        public DateTime CheckIn { get; set; }
 
-        public ParkedVehicleIndexVM()
+        public ParkedVehicleOverview()
         {
 
         }
 
-        public ParkedVehicleIndexVM(ParkedVehicle v)
+        public ParkedVehicleOverview(ParkedVehicle v)
         {
             Id = v.Id;
             RegNumber = v.RegNumber;
-            Colour = v.Colour;
             CheckIn = v.CheckIn;
         }
     }

@@ -134,6 +134,7 @@
     <Compile Include="Controllers\ParkedVehiclesController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
+    <Compile Include="Controllers\VehicleTypesController.cs" />
     <Compile Include="DataAccessLayer\RegisterContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -152,7 +153,8 @@
     <Compile Include="Models\VehicleType.cs" />
     <Compile Include="Models\ViewModels\PagedVehicle.cs" />
     <Compile Include="Models\ViewModels\ParkByDay.cs" />
-    <Compile Include="Models\ViewModels\ParkedVehicleIndexVM.cs" />
+    <Compile Include="Models\ViewModels\ParkedVehicleDetail.cs" />
+    <Compile Include="Models\ViewModels\ParkedVehicleOverview.cs" />
     <Compile Include="Models\ViewModels\ReceiptVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -226,6 +228,8 @@
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\MemberExists.cshtml" />
+    <Content Include="Views\VehicleTypes\Edit.cshtml" />
+    <Content Include="Views\VehicleTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

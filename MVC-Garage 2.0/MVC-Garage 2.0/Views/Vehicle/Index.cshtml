@@ -1,4 +1,4 @@
-﻿@model MVC_Garage_2._0.Models.ParkedVehicle
+﻿@model MVC_Garage_2._0.Models.ViewModels.ParkedVehicleDetail
 
 @{
     ViewBag.Title = "Index";
@@ -24,6 +24,13 @@
 
         <dd>
             @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner)
         </dd>
 
         <dt>

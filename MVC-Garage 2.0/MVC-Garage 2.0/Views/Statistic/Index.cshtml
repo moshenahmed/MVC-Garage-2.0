@@ -25,6 +25,9 @@
                 Type
             </th>
             <th>
+                Owner
+            </th>
+            <th>
                 Registration Number
             </th>
             <th>
@@ -45,11 +48,14 @@
 
         </tr>
 
-        @foreach (var v in item.VehicleList)
+        @foreach (var v in item.VehicleList.ToList())
         {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => v.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => v.Owner)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => v.RegNumber)
